@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>HERE IS BASIC WEATHER APP || I DONT USE MUCH CSS AND STYLE </h1>
+    <div class="INFO">
+        <input type="text" id="input" placeholder=" enter the city name">  <br>
+        <button id="btn"> search here</button>
+
+        <div class="info">
+            <h2 id="city"></h2>
+            <h3 id="temp"></h3>
+            <h3 id="hum"></h3>
+            
+        </div>
+    </div>
+<style>
+
+    .INFO
+    {
+        text-align: center;
+        background-color: gray;
+        
+        padding: 20px;
+        margin-top: 25px;
+    }
+    #input{
+        padding: 10px;
+        margin-bottom: 10px;
+        font-size: 18px;
+        border: 5px solid black;
+        border-radius: 25px;
+    }
+    button{
+        padding: 12px;
+        border-radius: 25px;
+    }
+    h3{
+        color: black;
+        background-color: aliceblue;
+    }
+</style>
+    <script>
+        // Fetching data from API
+        const searchBtn = document.getElementById('btn');
+        const inputField = document.getElementById('input');
+        const apikey= "9d1d09635b01478b6df52b5dd509b075";
+        const apiurl = "https://api.openweathermap.org/data/2.5/weather?units=metric&q=" ;
+
+        async function fetchData(city) {
+            const response = await fetch(apiurl + city +`&appid=${apikey}`);
+            var data = await response.json();
+
+            console.log(data);
+
+            document.getElementById('city').innerHTML = data.name;
+            document.getElementById('temp').innerHTML = "Temperature: " + Math.round(data.main.temp) + "°C";
+            document.getElementById('hum').innerHTML = "Humidity: " + data.main.humidity + "%";
+        }
+
+        searchBtn.addEventListener('click', () => {
+            fetchData(inputField.value);
+        });
+
+        
+    </script>
+</body>
+</html>
