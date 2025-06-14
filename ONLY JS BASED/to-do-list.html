@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <h2> building a todo list webiste</h2>
+
+    <div class="list">
+        <input type="text" id="input" placeholder="add a new task">
+        <button id="add" onclick="a()">add task</button>
+        <ul id="tasks">
+            <!-- add your tasks here -->
+             <li style="list-style-type:none; font-size: 25px; background-color: yellow; display: inline;">the all list apper here</li>
+        </ul>
+    </div>
+
+    <script>
+        let input = document.getElementById('input');
+        let c="sai";
+function a() {
+ document.getElementById('tasks').innerHTML+= `<li>${input.value}</li>`;
+// to increment and add a new values we use +=
+
+}
+        
+
+    </script>
+</body>
+</html>
