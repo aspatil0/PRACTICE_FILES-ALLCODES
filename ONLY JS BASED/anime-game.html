@@ -1,0 +1,110 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Guess the Anime Character</title>
+  <style>
+    body {
+      background-color: #1a1a2e;
+      color: #fff;
+      font-family: 'Arial', sans-serif;
+      text-align: center;
+      padding: 50px;
+    }
+
+    .container {
+      background-color: #16213e;
+      padding: 30px;
+      border-radius: 12px;
+      width: 90%;
+      max-width: 600px;
+      margin: auto;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+    }
+
+    h1 {
+      color: #f72585;
+    }
+
+    .quote {
+      font-style: italic;
+      margin: 20px 0;
+      font-size: 20px;
+      color: #c0c0c0;
+    }
+
+    input, button {
+      padding: 10px;
+      font-size: 16px;
+      margin: 10px;
+      border-radius: 6px;
+      border: none;
+    }
+
+    button {
+      background-color: #7209b7;
+      color: white;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #560bad;
+    }
+
+    #score {
+      margin-top: 20px;
+      font-size: 18px;
+      color: #80ffdb;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Guess the Anime Character</h1>
+    <p class="quote" id="quoteText">"Loading quote..."</p>
+    <input type="text" id="guess" placeholder="Enter character name" />
+    <br>
+    <button onclick="checkAnswer()">Submit Answer</button>
+    <p id="feedback"></p>
+    <p id="score">Score: 0</p>
+  </div>
+
+  <script>
+    const quotes = [
+      { quote: `"I'm gonna become the King of the Pirates!"`, answer: "Luffy" },
+      { quote: `"Power comes in response to a need, not a desire."`, answer: "Goku" },
+      { quote: `"A lesson without pain is meaningless."`, answer: "Edward Elric" },
+      { quote: `"I'm not a hero because I want your approval. I do it because I want to!"`, answer: "Deku" },
+      { quote: `"To know sorrow is not terrifying. What is terrifying is to know you can't go back to happiness you could have."`, answer: "Lelouch" },
+      { quote: `"In our society, letting others find out that you're a nice guy is a very risky move. It's extremely exhausting."`, answer: "Gojou" },
+      { quote: `"I'm not interested in ordinary people."`, answer: "L" }
+    ];
+
+    let currentQuote;
+    let score = 0;
+
+    function getRandomQuote() {
+      currentQuote = quotes[Math.floor(Math.random() * quotes.length)];
+      document.getElementById("quoteText").innerText = currentQuote.quote;
+      document.getElementById("guess").value = "";
+      document.getElementById("feedback").innerText = "";
+    }
+
+    function checkAnswer() {
+      const userGuess = document.getElementById("guess").value.trim().toLowerCase();
+      const correctAnswer = currentQuote.answer.toLowerCase();
+
+      if (userGuess === correctAnswer) {
+        score++;
+        document.getElementById("feedback").innerText = "✅ Correct!";
+      } else {
+        document.getElementById("feedback").innerText = `❌ Wrong! The correct answer was: ${currentQuote.answer}`;
+      }
+
+      document.getElementById("score").innerText = `Score: ${score}`;
+      setTimeout(getRandomQuote, 2000); // Next quote in 2 seconds
+    }
+
+    window.onload = getRandomQuote;
+  </script>
+</body>
+</html>
