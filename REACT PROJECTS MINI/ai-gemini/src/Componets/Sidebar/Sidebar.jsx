@@ -8,7 +8,7 @@ const Sidebar = () => {
       <div className="top">
         <img src={assets.menu_icon} alt="" />
         <div className="newchat">
-            {/* <img src={} alt="" /> */}
+            <img src={} alt="" />
         </div>
       </div>
       <div className="bottom"></div>
