@@ -4,8 +4,9 @@ import Sidebar from './Componets/Sidebar/Sidebar'
 const App = () => {
   return (
     <div>
-      <Sidebar/>
-    </div>
+      <Sidebar/> 
+{/*       //for the sidebar accaess
+    </div> */}
   )
 }
 
