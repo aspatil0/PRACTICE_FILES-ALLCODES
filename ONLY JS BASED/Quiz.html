@@ -12,7 +12,105 @@
     <button id="next">Next</button>
     <div id="result"></div>
   </div>
-  <script src="script.js"></script>
+  <script src="script.js">
+    const questions = [
+  {
+    question: "What is the capital of France?",
+    options: ["Berlin", "London", "Paris", "Madrid"],
+    answer: "Paris"
+  },
+  {
+    question: "Which planet is known as the Red Planet?",
+    options: ["Earth", "Mars", "Jupiter", "Venus"],
+    answer: "Mars"
+  },
+  {
+    question: "Who wrote 'Romeo and Juliet'?",
+    options: ["Charles Dickens", "William Shakespeare", "Mark Twain", "J.K. Rowling"],
+    answer: "William Shakespeare"
+  },
+  {
+    question: "What is the largest ocean?",
+    options: ["Atlantic", "Pacific", "Indian", "Arctic"],
+    answer: "Pacific"
+  },
+  {
+    question: "Which is the smallest prime number?",
+    options: ["0", "1", "2", "3"],
+    answer: "2"
+  },
+  {
+    question: "What does HTTP stand for?",
+    options: ["HyperText Transfer Protocol", "HighText Transfer Protocol", "HyperText Translate Protocol", "Hyper Tool Transfer Protocol"],
+    answer: "HyperText Transfer Protocol"
+  },
+  {
+    question: "What is the boiling point of water?",
+    options: ["90°C", "100°C", "110°C", "120°C"],
+    answer: "100°C"
+  },
+  {
+    question: "Which language runs in a web browser?",
+    options: ["Java", "C", "Python", "JavaScript"],
+    answer: "JavaScript"
+  },
+  {
+    question: "What year did World War II end?",
+    options: ["1942", "1945", "1948", "1950"],
+    answer: "1945"
+  },
+  {
+    question: "What is the largest continent?",
+    options: ["Africa", "Asia", "Europe", "Australia"],
+    answer: "Asia"
+  }
+];
+
+let current = 0;
+let score = 0;
+
+const questionEl = document.getElementById('question');
+const optionsEl = document.getElementById('options');
+const nextBtn = document.getElementById('next');
+const resultEl = document.getElementById('result');
+
+function loadQuestion() {
+  questionEl.textContent = questions[current].question;
+  optionsEl.innerHTML = '';
+  questions[current].options.forEach(option => {
+    const button = document.createElement('button');
+    button.textContent = option;
+    button.className = 'option';
+    button.onclick = selectOption;
+    optionsEl.appendChild(button);
+  });
+}
+
+function selectOption(e) {
+  const selected = e.target.textContent;
+  if (selected === questions[current].answer) {
+    score++;
+  }
+  current++;
+  if (current < questions.length) {
+    loadQuestion();
+  } else {
+    showResult();
+  }
+}
+
+function showResult() {
+  questionEl.style.display = 'none';
+  optionsEl.style.display = 'none';
+  nextBtn.style.display = 'none';
+  resultEl.textContent = `Your score: ${score} out of ${questions.length}`;
+}
+
+nextBtn.style.display = 'none';
+
+loadQuestion();
+
+  </script>
 <style>
 
 
