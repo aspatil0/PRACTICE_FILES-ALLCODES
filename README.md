@@ -23,9 +23,7 @@ Each folder contains:
 |-------------|-------------------------------|
 | **JavaScript (Vanilla)** | DOM manipulation, logic building |
 | **React.js**   | Component-based UI            |
-| **Next.js**    | Server-side rendering & routing |
 | **MongoDB**    | NoSQL database (MERN)         |
-| **Express.js** | Backend APIs (MERN)           |
 | **Node.js**    | Server logic (MERN)           |
 
 ---
