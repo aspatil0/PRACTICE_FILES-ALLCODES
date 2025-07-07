@@ -1,0 +1,62 @@
+<html >
+<head>
+  <meta charset="UTF-8" />
+  <title>Discount Calculator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f0f4f8;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+    h1 {
+      color: #333;
+    }
+    input {
+      padding: 8px;
+      margin: 5px;
+      font-size: 16px;
+    }
+    button {
+      padding: 8px 16px;
+      font-size: 16px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+    #result {
+      margin-top: 20px;
+      font-size: 18px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h1>Discount Calculator</h1>
+  <div>
+    <input type="number" id="priceInput" placeholder="Enter price" />
+    <input type="number" id="discountInput" placeholder="Enter discount (%)" />
+    <br />
+    <button onclick="calculateDiscount()">Calculate Final Cost</button>
+  </div>
+  <div id="result"></div>
+
+  <script>
+    function calculateDiscount() {
+      const price = parseFloat(document.getElementById('priceInput').value);
+      const discount = parseFloat(document.getElementById('discountInput').value);
+      let result = '';
+      if (isNaN(price) || isNaN(discount)) {
+        result = 'Please enter valid numbers for both fields.';
+      } else {
+        const discountAmount = (price * discount) / 100;
+        const finalCost = price - discountAmount;
+        result = `Original Price: ₹${price.toFixed(2)}\nDiscount: ${discount}%\nFinal Cost: ₹${finalCost.toFixed(2)}`;
+      }
+      document.getElementById('result').innerText = result;
+    }
+  </script>
+</body>
+</html>
