@@ -1,0 +1,79 @@
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <title>Mood Color Palette</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background: #f4f4f4;
+      padding: 50px;
+    }
+    h1 {
+      margin-bottom: 20px;
+    }
+    input {
+      padding: 10px;
+      width: 200px;
+      font-size: 16px;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      margin-left: 10px;
+      cursor: pointer;
+    }
+    .palette {
+      display: flex;
+      justify-content: center;
+      margin-top: 30px;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .color {
+      width: 100px;
+      height: 100px;
+      cursor: pointer;
+      border: 2px solid #333;
+    }
+  </style>
+</head>
+<body>
+  <h1>Mood-Based Color Palette</h1>
+  <input type="text" id="mood" placeholder="Enter your mood..." />
+  <button onclick="generatePalette()">Generate</button>
+  <div class="palette" id="palette"></div>
+
+  <script>
+    const palettes = {
+      happy: ['#FFD700', '#FF6347', '#FF69B4', '#FFFF00'],
+      calm: ['#87CEFA', '#B0E0E6', '#AFEEEE', '#ADD8E6'],
+      angry: ['#FF0000', '#8B0000', '#B22222', '#DC143C'],
+      sad: ['#1E90FF', '#4682B4', '#4169E1', '#0000CD'],
+      energetic: ['#FF8C00', '#FF4500', '#FF1493', '#FF69B4']
+    };
+
+    function generatePalette() {
+      const mood = document.getElementById('mood').value.toLowerCase();
+      const paletteDiv = document.getElementById('palette');
+      paletteDiv.innerHTML = '';
+
+      if (palettes[mood]) {
+        palettes[mood].forEach(color => {
+          const colorBox = document.createElement('div');
+          colorBox.className = 'color';
+          colorBox.style.backgroundColor = color;
+          colorBox.title = `Click to copy ${color}`;
+          colorBox.onclick = () => {
+            navigator.clipboard.writeText(color);
+            alert(`Copied ${color} to clipboard!`);
+          };
+          paletteDiv.appendChild(colorBox);
+        });
+      } else {
+        paletteDiv.innerHTML = '<p>No palette found for this mood.</p>';
+      }
+    }
+  </script>
+</body>
+</html>
