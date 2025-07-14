@@ -44,7 +44,8 @@ const Main = () => {
           : <>
             <div className="greet">
               <p><span>Hello, Patil.</span></p>
-              <p>How can I help you today?</p>
+              <p>How can I help you today? || i not added the gemini api thats why the prompt section not working sorry for that either you use : 
+<a href="">SEE CLONE GEMINI </a></p>
             </div>
             <div className="cards">
               <div className="card">
