@@ -44,7 +44,7 @@ const Main = () => {
           : <>
             <div className="greet">
               <p><span>Hello, Patil.</span></p>
-              <p>How can I help you today?</p>
+              <p>How can I help you today? </p>
             </div>
             <div className="cards">
               <div className="card">
@@ -79,7 +79,8 @@ const Main = () => {
             </div>
           </div>
           <p className="bottom-info">
-            Gemini may display inaccurate info, including about people, so double-check its responses. Your privacy and Gemini Apps
+            || I Not added the Gemini API From some reasons thats Why the Prompt section not working sorry for that either you Visit : 
+<a href="https://clone-gemini.vercel.app/">SEE CLONE GEMINI </a>
           </p>
         </div>
       </div>
