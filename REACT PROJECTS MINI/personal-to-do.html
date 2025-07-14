@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Neon To-Do List Tracker</title>
+  <style>
+    body {
+      background: #000;
+      color: #0ff;
+      font-family: 'Courier New', Courier, monospace;
+      text-align: center;
+      padding: 20px;
+    }
+
+    h1 {
+      color: #0ff;
+      text-shadow: 0 0 5px #0ff, 0 0 10px #0ff;
+    }
+
+    form {
+      margin-bottom: 20px;
+    }
+
+    input[type="text"], button {
+      background: #000;
+      border: 2px solid #0ff;
+      color: #0ff;
+      padding: 10px;
+      font-size: 16px;
+    }
+
+    button {
+      cursor: pointer;
+      margin-left: 10px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    th, td {
+      border: 1px solid #0ff;
+      padding: 8px;
+      text-align: center;
+    }
+
+    .complete {
+      text-decoration: line-through;
+      color: #0f0;
+    }
+
+    input[type="checkbox"] {
+      transform: scale(1.5);
+      cursor: pointer;
+    }
+
+    #streak-graph {
+      display: grid;
+      grid-template-columns: repeat(7, 20px);
+      gap: 4px;
+      justify-content: center;
+      margin-top: 40px;
+    }
+
+    .streak-day {
+      width: 20px;
+      height: 20px;
+      background-color: #022;
+      border: 1px solid #0ff;
+    }
+
+    .streak-day.active {
+      background-color: #0ff;
+    }
+  </style>
+</head>
+<body>
+  <h1>📝 Neon To-Do List Tracker</h1>
+  <form id="task-form">
+    <input type="text" id="task-input" maxlength="100" placeholder="Add your task..." required />
+    <button type="submit">Add Task</button>
+  </form>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Done</th>
+        <th>Task</th>
+        <th>Completed At</th>
+        <th>Edit</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+    <tbody id="task-table-body"></tbody>
+  </table>
+
+  <h2>Your Streak</h2>
+  <div id="streak-graph"></div>
+
+  <script>
+    const taskForm = document.getElementById('task-form');
+    const taskInput = document.getElementById('task-input');
+    const taskTableBody = document.getElementById('task-table-body');
+    const streakGraph = document.getElementById('streak-graph');
+
+    let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+    let streak = JSON.parse(localStorage.getItem('streak')) || {};
+
+    function saveData() {
+      localStorage.setItem('tasks', JSON.stringify(tasks));
+      localStorage.setItem('streak', JSON.stringify(streak));
+    }
+
+    function renderTasks() {
+      taskTableBody.innerHTML = '';
+      tasks.forEach((task, index) => {
+        const row = document.createElement('tr');
+
+        // Checkbox
+        const checkCell = document.createElement('td');
+        const checkBox = document.createElement('input');
+        checkBox.type = 'checkbox';
+        checkBox.checked = task.completed;
+        checkBox.onchange = () => toggleComplete(index);
+        checkCell.appendChild(checkBox);
+
+        // Task text
+        const taskCell = document.createElement('td');
+        taskCell.textContent = task.name;
+        if (task.completed) taskCell.classList.add('complete');
+
+        // Time
+        const timeCell = document.createElement('td');
+        timeCell.textContent = task.completed ? task.completedAt : '-';
+
+        // Edit
+        const editCell = document.createElement('td');
+        const editBtn = document.createElement('button');
+        editBtn.textContent = 'Edit';
+        editBtn.onclick = () => editTask(index);
+        editCell.appendChild(editBtn);
+
+        // Delete
+        const deleteCell = document.createElement('td');
+        const deleteBtn = document.createElement('button');
+        deleteBtn.textContent = 'Delete';
+        deleteBtn.onclick = () => deleteTask(index);
+        deleteCell.appendChild(deleteBtn);
+
+        row.appendChild(checkCell);
+        row.appendChild(taskCell);
+        row.appendChild(timeCell);
+        row.appendChild(editCell);
+        row.appendChild(deleteCell);
+
+        taskTableBody.appendChild(row);
+      });
+
+      renderStreak();
+    }
+
+    function addTask(name) {
+      if (tasks.length >= 10) {
+        alert('You can only add up to 10 tasks per day!');
+        return;
+      }
+      tasks.push({ name, completed: false, completedAt: '' });
+      saveData();
+      renderTasks();
+    }
+
+    function toggleComplete(index) {
+      const task = tasks[index];
+      task.completed = !task.completed;
+      task.completedAt = task.completed ? new Date().toLocaleTimeString() : '';
+      updateStreak();
+      saveData();
+      renderTasks();
+    }
+
+    function editTask(index) {
+      const newName = prompt('Edit task:', tasks[index].name);
+      if (newName) {
+        tasks[index].name = newName.trim();
+        saveData();
+        renderTasks();
+      }
+    }
+
+    function deleteTask(index) {
+      tasks.splice(index, 1);
+      saveData();
+      renderTasks();
+    }
+
+    function updateStreak() {
+      const today = new Date().toISOString().slice(0, 10);
+      streak[today] = tasks.filter(task => task.completed).length;
+    }
+
+    function renderStreak() {
+      streakGraph.innerHTML = '';
+      const today = new Date();
+      for (let i = 20; i >= 0; i--) {
+        const date = new Date(today);
+        date.setDate(today.getDate() - i);
+        const dateStr = date.toISOString().slice(0, 10);
+        const dayDiv = document.createElement('div');
+        dayDiv.classList.add('streak-day');
+        if (streak[dateStr] && streak[dateStr] > 0) {
+          dayDiv.classList.add('active');
+        }
+        streakGraph.appendChild(dayDiv);
+      }
+    }
+
+    taskForm.addEventListener('submit', e => {
+      e.preventDefault();
+      const name = taskInput.value.trim();
+      if (name) {
+        addTask(name);
+        taskInput.value = '';
+      }
+    });
+
+    renderTasks();
+  </script>
+</body>
+</html>
