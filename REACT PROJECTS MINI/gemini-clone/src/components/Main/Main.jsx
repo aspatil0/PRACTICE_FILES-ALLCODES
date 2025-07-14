@@ -79,7 +79,7 @@ const Main = () => {
             </div>
           </div>
           <p className="bottom-info">
-            || i not added the gemini api thats why the prompt section not working sorry for that either you use : 
+            || I Not added the Gemini API From some reasons thats Why the Prompt section not working sorry for that either you Visit : 
 <a href="https://clone-gemini.vercel.app/">SEE CLONE GEMINI </a>
           </p>
         </div>
