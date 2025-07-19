@@ -1,0 +1,98 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Which Avenger Are You?</title>
+  <style>
+    body {
+      background-color: #111;
+      color: white;
+      font-family: 'Arial', sans-serif;
+      text-align: center;
+      padding: 50px;
+    }
+
+    .container {
+      background-color: #222;
+      padding: 30px;
+      border-radius: 10px;
+      width: 90%;
+      max-width: 400px;
+      margin: auto;
+    }
+
+    select, button {
+      padding: 10px;
+      font-size: 16px;
+      margin-top: 10px;
+      width: 80%;
+    }
+
+    button {
+      background-color: crimson;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: darkred;
+    }
+
+    h1 {
+      color: #f0db4f;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Which Avenger Are You?</h1>
+    <div class="quiz-box">
+      <label>What's your strongest trait?</label><br>
+      <select id="trait">
+        <option value="brave">Brave</option>
+        <option value="smart">Smart</option>
+        <option value="loyal">Loyal</option>
+        <option value="funny">Funny</option>
+      </select><br><br>
+
+      <label>Pick a weapon:</label><br>
+      <select id="weapon">
+        <option value="shield">Shield</option>
+        <option value="hammer">Hammer</option>
+        <option value="armor">Armor</option>
+        <option value="arrows">Arrows</option>
+      </select><br><br>
+
+      <button onclick="getAvenger()">Reveal My Avenger!</button>
+      <h2 id="result"></h2>
+    </div>
+  </div>
+
+  <script>
+    function getAvenger() {
+      const trait = document.getElementById("trait").value;
+      const weapon = document.getElementById("weapon").value;
+
+      let avenger = "";
+
+      if (trait === "brave" && weapon === "shield") {
+        avenger = "Captain America 🛡️";
+      } else if (trait === "smart" && weapon === "armor") {
+        avenger = "Iron Man 🤖";
+      } else if (trait === "brave" && weapon === "hammer") {
+        avenger = "Thor ⚡";
+      } else if (trait === "loyal" && weapon === "arrows") {
+        avenger = "Hawkeye 🎯";
+      } else if (trait === "funny" && weapon === "armor") {
+        avenger = "Spider-Man 🕸️";
+      } else {
+        avenger = "Hulk 💪 (You smash through every quiz)";
+      }
+
+      document.getElementById("result").innerText = `You are: ${avenger}`;
+    }
+  </script>
+</body>
+</html>
