@@ -1,0 +1,93 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Death Calculator ☠️</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background: #111;
+      color: #fff;
+      text-align: center;
+      padding: 50px;
+    }
+    h1 {
+      color: #ff4d4d;
+    }
+    input, select, button {
+      padding: 10px;
+      margin: 10px;
+      border-radius: 5px;
+      border: none;
+      font-size: 16px;
+    }
+    button {
+      background: #ff4d4d;
+      color: white;
+      cursor: pointer;
+    }
+    .result {
+      margin-top: 20px;
+      font-size: 20px;
+      color: #ffcc00;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>☠️ Death Calculator ☠️</h1>
+  <p>Enter your details and see when you might die (for fun!)</p>
+
+  <input type="number" id="age" placeholder="Enter your age" min="1" max="120">
+  <select id="smoke">
+    <option value="0">Do you smoke? ❌</option>
+    <option value="5">Yes, a little 🚬</option>
+    <option value="10">Yes, a lot 💀</option>
+  </select>
+  <select id="exercise">
+    <option value="5">Exercise daily 🏋️</option>
+    <option value="2">Sometimes 🏃</option>
+    <option value="0">Never 😴</option>
+  </select>
+  <button onclick="calculateDeath()">Calculate Death Year</button>
+
+  <div class="result" id="result"></div>
+
+  <script>
+    function calculateDeath() {
+      const age = parseInt(document.getElementById('age').value);
+      const smoke = parseInt(document.getElementById('smoke').value);
+      const exercise = parseInt(document.getElementById('exercise').value);
+      const resultDiv = document.getElementById('result');
+
+      if (!age || age <= 0 || age > 120) {
+        resultDiv.textContent = "⚠️ Please enter a valid age!";
+        return;
+      }
+
+      let lifeExpectancy = 85;
+
+      lifeExpectancy -= smoke;
+
+      lifeExpectancy += exercise;
+
+      const deathAge = lifeExpectancy;
+      const currentYear = new Date().getFullYear();
+      const deathYear = currentYear + (deathAge - age);
+
+      let message = `🕰️ Based on your lifestyle, you might live until <b>${deathYear}</b> (Age: ${deathAge})`;
+
+      if (deathAge - age < 5) {
+        message += `<br>⚰️ Uh oh... start taking care of yourself!`;
+      } else if (deathAge - age > 40) {
+        message += `<br>💪 You're likely to live a long and healthy life!`;
+      } else {
+        message += `<br>😎 You have a moderate lifestyle.`;
+      }
+
+      resultDiv.innerHTML = message;
+    }
+  </script>
+
+</body>
+</html>
