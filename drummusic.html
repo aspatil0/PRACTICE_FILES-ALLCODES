@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Virtual Drum Kit</title>
+  <style>
+    body {
+      background: #111;
+      color: white;
+      text-align: center;
+      font-family: Arial, sans-serif;
+      padding-top: 50px;
+    }
+    h1 {
+      margin-bottom: 20px;
+    }
+    .drum-container {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    .drum {
+      width: 100px;
+      height: 100px;
+      background: #444;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 24px;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: 0.1s;
+    }
+    .drum.active {
+      transform: scale(1.1);
+      background: #ff4757;
+      box-shadow: 0 0 20px #ff4757;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🥁 Virtual Drum Kit</h1>
+  <p>Press keys: A, S, D, F, G, H</p>
+  <div class="drum-container">
+    <div class="drum" data-key="A">A</div>
+    <div class="drum" data-key="S">S</div>
+    <div class="drum" data-key="D">D</div>
+    <div class="drum" data-key="F">F</div>
+    <div class="drum" data-key="G">G</div>
+    <div class="drum" data-key="H">H</div>
+  </div>
+
+  <!-- Drum Sounds -->
+  <audio id="A" src="https://www.fesliyanstudios.com/play-mp3/387"></audio>
+  <audio id="S" src="https://www.fesliyanstudios.com/play-mp3/388"></audio>
+  <audio id="D" src="https://www.fesliyanstudios.com/play-mp3/389"></audio>
+  <audio id="F" src="https://www.fesliyanstudios.com/play-mp3/390"></audio>
+  <audio id="G" src="https://www.fesliyanstudios.com/play-mp3/391"></audio>
+  <audio id="H" src="https://www.fesliyanstudios.com/play-mp3/392"></audio>
+
+  <script>
+    const drums = document.querySelectorAll('.drum');
+
+    // Play sound function
+    function playSound(key) {
+      const audio = document.getElementById(key.toUpperCase());
+      const drum = document.querySelector(`.drum[data-key="${key.toUpperCase()}"]`);
+
+      if (audio && drum) {
+        audio.currentTime = 0; // Reset sound for fast repeat
+        audio.play();
+
+        // Animation
+        drum.classList.add('active');
+        setTimeout(() => drum.classList.remove('active'), 200);
+      }
+    }
+
+    // Key press event
+    document.addEventListener('keydown', (e) => {
+      playSound(e.key);
+    });
+
+    // Mouse click event
+    drums.forEach(drum => {
+      drum.addEventListener('click', () => {
+        playSound(drum.dataset.key);
+      });
+    });
+  </script>
+
+</body>
+</html>
