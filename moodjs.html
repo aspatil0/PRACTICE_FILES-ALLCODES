@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>what your mood</title>
+</head>
+<body>
+    <style>
+*{
+    text-align: center;
+}
+img{
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    border: 5px solid black;
+}
+
+#a{
+    background-color: magenta;
+    padding: 12px;
+    border-radius: 10px;
+}
+
+#a:hover{
+    background-color: yellow;
+    color: black;
+    cursor: pointer;
+}
+
+#b{
+    background-color: blue;
+    padding: 12px;
+    border-radius: 10px;
+}
+#b:hover{
+    background-color: green;    
+    color: white;
+    cursor: pointer;}
+
+
+#c{
+    background-color: red;      
+    padding: 12px;
+    border-radius: 10px;    }
+
+#c:hover{
+    background-color: black;
+    color: white;
+    cursor: pointer;    }
+    </style>
+
+    <h1>whats your current mood</h1>
+<img src="/DAY 1/no re.jpeg" alt="">
+<button id="a"> happy</button>
+<button id="b"> sad</button>
+<button id="c">angry</button>
+
+
+
+
+
+
+<script>
+const a = document.getElementById("a");
+const b = document.getElementById("b");
+const c = document.getElementById("c");
+a.addEventListener("click",()=>{
+    document.querySelector("h1").innerText = "I am happy";
+    document.querySelector("img").src = "/DAY 1/smile.jpeg";
+    document.querySelector("body").style.backgroundColor = "yellow";
+})
+b.addEventListener("click",()=>{
+    document.querySelector("h1").innerText = "I am sad";
+    document.querySelector("img").src = "/DAY 1/sad.jpeg";
+    document.querySelector("body").style.background= "gray";
+
+})
+c.addEventListener("click", ()=>{
+    document.querySelector("h1").innerText = "I am angry";
+    document.querySelector("img").src = "/DAY 1/angry.jpeg";
+    document.querySelector("body").style.backgroundColor = "red";
+})
+
+</script>
+</body>
+</html>
