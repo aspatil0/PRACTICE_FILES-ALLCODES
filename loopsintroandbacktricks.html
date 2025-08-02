@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loops</title>
+</head>
+<body>
+    <style>
+        body {
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+            color: #333;
+        }
+        h1 {
+            text-align: center;
+            color: #4CAF50;
+        }
+    </style>
+
+
+
+<h1>I AM LEARNING JS KEYWORDS AND LOOPS</h1>
+
+<button >CLick </button>
+
+
+
+
+
+
+
+<script>
+    // alert("hello i am here!");
+    a=20  //hoisting
+    console.log(a);
+
+    //we can use var, let, const
+    //we cannt redclarte let and const
+
+
+    var b = 10;
+    console.log('this is by var'+ " " + b);
+
+    //var is function scoped
+    //let and const are block scoped    
+
+
+    const c = 30;
+    console.log('this is by const' + " " + c);
+
+
+    const holiday = "sunday";
+    // holiday = "monday"; // This will throw an error because const cannot be reassigned
+    console.log(holiday);
+
+
+    
+
+    console.error("this is an error message");
+
+    //console.warn
+    console.warn("this is a warning message");
+
+    //console.info
+    console.info("this is an info message");
+
+    //console.table
+    console.table({name: "John", age: 30, city: "New York"});
+
+    //console.assert
+    // console.assert(5 > 10, "This will show an assertion error because the condition is false");
+
+    //console.clear
+    // console.clear();
+
+
+
+
+
+//loops in js
+    //for loop
+    for (let i = 0; i < 5; i++) {
+        console.log(i)
+    
+    }
+
+
+    //nested for loop
+    for(i=1;i<=6;i++){
+        console.log("Table of " + i);
+        for(let j=1;j<=10;j++){
+console.log(`${i} x ${j} = ${(i*j)}`)        }
+    }
+
+
+
+
+//string literals / backticks
+    let myName="aditya";
+    let aa=21;
+    console.log(`My name is ${myName} and my age is ${aa }`);  //moderm version
+
+
+
+
+
+
+
+    //while loop 
+   mar=25
+    while(mar<30){
+        console.log(mar); // Output: 31   25+3 = 28, 28+3 = 31
+          mar+=3;  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+//dom for button
+let z = document.querySelector("h1");
+console.log(z);
+let button = document.querySelector("button");
+console.log(button);
+
+
+button.addEventListener("click", function() {
+    z.style.color = "red";
+    z.textContent = "I AM LEARNING JS KEYWORDS AND LOOPS - BUTTON CLICKED!";
+    
+});
+
+button.addEventListener("dblclick", function() {
+    z.style.color = "blue";
+    
+    
+});
+
+
+
+
+
+</script>
+
+
+</body>
+</html>
