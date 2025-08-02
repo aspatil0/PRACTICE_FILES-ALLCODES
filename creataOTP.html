@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generate OTP</title>
+</head>
+<body>
+    <style>
+
+        *{
+            text-align: center;
+            color: rgb(0, 255, 255);
+            font-family: Arial, sans-serif;
+            font-size: 20px;
+        }
+        body{
+            margin-top: 150px;
+                        background-image: linear-gradient(to left, #ffce09, #0eb2ee);
+
+        }
+
+span{
+    color: red;
+    background-color: black;
+}
+button{
+    width: 150px;
+    height: 30px;
+    background-color: black;
+    border-radius: 25px;
+    transition: 1s;
+}
+button:hover{
+    background-color: #0eb2ee;  
+    color: black;
+    cursor: pointer;}
+    </style>
+
+<h1>your 5 digit otp is <span></span> use it caerfully </h1>
+<button>get a otp</button>
+
+
+
+<script>
+const button = document.querySelector("button");
+const span = document.getElementsByTagName("span");
+ button.addEventListener("click",()=>{
+    let otp="";
+    for(let i=0;i<5;i++){
+        otp +=Math.floor(Math.random()*10);
+        document.querySelector("span").innerText = otp;
+        console.log(otp);
+    }
+ })
+
+
+</script>
+</body>
+</html>
+
