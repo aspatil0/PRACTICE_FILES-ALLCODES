@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data submission</title>
+</head>
+<body>
+    
+    <h1 id="aan">The breaking news is :</h1>
+    <input type="text" placeholder="Please Enter The News" id="aaa" oninput="a()">
+
+    <script>
+        function a() {
+            let news = document.getElementById("aaa").value;
+            document.getElementById("aan").textContent = "The breaking news is : " + news;
+        }
+    </script>
+</body>
+</html>
