@@ -1,0 +1,80 @@
+
+<!-- all the code is written in javascript
+arrays are used to store multiple values in a single variable -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ARRAYS JS</title>
+</head>
+<body>
+    <style>
+
+    </style>
+
+
+
+
+
+
+
+
+<script>
+
+    const arrays = [1, 2, 3, 4, "anil"];
+    console.log(arrays);
+    console.log(arrays[4]);
+
+
+
+    const fruit =[ 'apple', 'banana', 'orange', 'grape'];
+    console.log(fruit);
+    console.log(fruit[2]);
+
+
+    //methods of arrays in javascript
+
+
+    fruit.pop(); // removes the last element
+    console.log(fruit); // ['apple', 'banana', 'orange']
+
+
+    //push in javascript
+    fruit.push('kiwi'); // adds an element to the end
+    console.log(fruit); // ['apple', 'banana', 'orange', 'kiwi]
+
+
+
+    //shift in javascript
+    fruit.shift(); // removes the first element
+    console.log(fruit); // ['banana', 'orange', 'kiwi']
+
+
+    //unshift in javascript
+    fruit.unshift('tomato'); // adds an element to the beginning 
+    console.log(fruit); // ['mango', 'banana', 'orange', 'kiwi']
+
+
+
+    //includes in javascript
+    console.log(fruit.includes('banana')); // true
+    console.log(fruit.includes('apple')); // false
+
+
+//reverse in javascript
+    // reverses the order of the array
+    fruit.reverse(); // reverses the order of the array
+    console.log(fruit); // ['kiwi', 'orange', 'banana', 'tomato']
+
+
+    //repace in javascript
+fruit[1]='javascript'; // replaces the element at index 1
+console.log(fruit); // ['kiwi', 'javascript', 'banana', 'tomato']
+
+
+
+</script>
+</body>
+</html>
