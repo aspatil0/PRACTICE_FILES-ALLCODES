@@ -22,9 +22,7 @@ Each folder contains:
 | Tech        | Used For                      |
 |-------------|-------------------------------|
 | **JavaScript (Vanilla)** | DOM manipulation, logic building |
-| **React.js**   | Component-based UI            |
-| **MongoDB**    | NoSQL database (MERN)         |
-| **Node.js**    | Server logic (MERN)           |
+
 
 ---
 
