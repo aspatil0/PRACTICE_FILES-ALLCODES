@@ -1,0 +1,66 @@
+<!-- When websites ask you to verify “You’re not a robot” (like reCAPTCHA), they are using techniques to distinguish humans from automated bots. Here’s how it works:
+
+1. Simple Checkbox reCAPTCHA (v2)
+When you just tick a checkbox, it seems simple, but Google is analyzing multiple hidden factors:
+
+Mouse movement & behavior:
+Bots usually click perfectly, while humans move the mouse naturally with small shakes and pauses.
+
+Click timing:
+Humans take a random time to move and click; bots are instant.
+
+Browser & device fingerprinting:
+Your browser type, screen size, IP address, cookies, and other metadata help detect if you’re a normal user or a script.
+
+If the system is confident you’re human → ✅ Passed without extra steps.
+If suspicious → It will ask image challenges.
+
+2. Image or Puzzle CAPTCHAs
+If the checkbox alone is not enough:
+
+You’re asked to select traffic lights, crosswalks, buses, or solve a puzzle.
+
+This tests human visual recognition because bots struggle with complex images.
+
+Google also uses your clicks to train AI for image recognition.
+
+3. Invisible reCAPTCHA
+Modern sites don’t even show a checkbox:
+
+Monitors background user behavior, like:
+
+Mouse or touch movements
+
+Scrolling patterns
+
+Typing speed
+
+How you navigate the site
+
+If it trusts you’re human → ✅ Automatically verified.
+
+If suspicious → Shows a challenge.
+
+4. Behind the Scenes
+Risk Analysis Engine:
+Google or similar services analyze your behavior, IP, and history to give a “risk score.”
+
+Bot Detection Patterns:
+Bots often:
+
+Use headless browsers
+
+Send requests too fast
+
+Skip loading resources like CSS/images
+
+Lack human interaction traces
+
+5. Advanced Methods (reCAPTCHA v3)
+Score-based system (0.0–1.0):
+
+1.0 → Likely human
+
+0.0 → Likely bot
+
+No interaction needed unless the score is low → then a challenge appears. -->
