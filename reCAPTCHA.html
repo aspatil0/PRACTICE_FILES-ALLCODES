@@ -64,3 +64,50 @@ Score-based system (0.0–1.0):
 0.0 → Likely bot
 
 No interaction needed unless the score is low → then a challenge appears. -->
+
+
+
+
+
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>I am Not a Robot</title>
+  <style>
+    
+    body { font-family: Arial, sans-serif; text-align: center; margin-top: 50px; }
+    .captcha-box { display: inline-block; border: 2px solid #ccc; padding: 20px; border-radius: 8px; }
+    #verifyBtn { display: none; margin-top: 10px; }
+
+    
+  </style>
+  
+</head>
+<body>
+  
+  <div class="captcha-box">
+    <input type="checkbox" id="robotCheck"> I am not a robot
+    <br>
+    <button id="verifyBtn">Submit</button>
+  </div>
+
+  <script>
+    const checkBox = document.getElementById('robotCheck');
+    const verifyBtn = document.getElementById('verifyBtn');
+
+    checkBox.addEventListener('change', () => {
+      if (checkBox.checked) {
+        verifyBtn.style.display = 'block';
+      } else {
+        verifyBtn.style.display = 'none';
+      }
+    });
+
+    verifyBtn.addEventListener('click', () => {
+      alert('Verified! ✅');
+    });
+  </script>
+</body>
+</html>
+
