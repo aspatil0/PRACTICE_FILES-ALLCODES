@@ -1,0 +1,106 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Life Calculator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 40px;
+      background: #f4f4f4;
+      text-align: center;
+    }
+    input, select, button {
+      padding: 8px;
+      margin: 8px;
+    }
+    #result {
+      margin-top: 20px;
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px #ccc;
+      display: inline-block;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>User Life Info Generator</h1>
+
+  <input type="text" id="name" placeholder="Enter your name"><br>
+
+  <label>Date of Birth:</label>
+  <input type="date" id="dob"><br>
+
+  <label>Gender:</label>
+  <select id="gender">
+    <option value="Male">Male</option>
+    <option value="Female">Female</option>
+    <option value="Other">Other</option>
+  </select><br>
+
+  <label>Do you Drink?</label>
+  <select id="drink">
+    <option value="No">No</option>
+    <option value="Yes">Yes</option>
+  </select><br>
+
+  <label>Do you Smoke?</label>
+  <select id="smoke">
+    <option value="No">No</option>
+    <option value="Yes">Yes</option>
+  </select><br>
+
+  <button onclick="generateLifeInfo()">Generate Info</button>
+
+  <div id="result"></div>
+
+  <script>
+    function generateLifeInfo() {
+      let name = document.getElementById('name').value;
+      let dob = new Date(document.getElementById('dob').value);
+      let gender = document.getElementById('gender').value;
+      let drink = document.getElementById('drink').value;
+      let smoke = document.getElementById('smoke').value;
+
+      if (!name || isNaN(dob)) {
+        alert("Please fill in your name and date of birth correctly!");
+        return;
+      }
+
+      let today = new Date();
+      let ageYears = today.getFullYear() - dob.getFullYear();
+      let ageMonths = today.getMonth() - dob.getMonth();
+      let ageDays = today.getDate() - dob.getDate();
+
+      if (ageMonths < 0 || (ageMonths === 0 && ageDays < 0)) {
+        ageYears--;
+      }
+
+      let livedMs = today - dob;
+      let livedDays = Math.floor(livedMs / (1000 * 60 * 60 * 24));
+      let livedSeconds = Math.floor(livedMs / 1000);
+
+      let extraYears;
+      if (drink === "Yes" && smoke === "Yes") {
+        extraYears = Math.floor(Math.random() * 13) + 5; // 5-17 years
+      } else if (drink === "Yes" || smoke === "Yes") {
+        extraYears = Math.floor(Math.random() * 20) + 20; // 20-39 years
+      } else {
+        extraYears = Math.floor(Math.random() * 30) + 50; // 50-79 years
+      }
+
+      document.getElementById('result').innerHTML = `
+        <h2>Hello, ${name}!</h2>
+        <p>Gender: <b>${gender}</b></p>
+        <p>Your Age: <b>${ageYears} years</b></p>
+        <p>You have lived for <b>${livedDays.toLocaleString()}</b> days.</p>
+        <p>You have lived for <b>${livedSeconds.toLocaleString()}</b> seconds.</p>
+        <p>Estimated more years you may live: <b>${extraYears} years</b></p>
+      `;
+    }
+  </script>
+
+</body>
+</html>
