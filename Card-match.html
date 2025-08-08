@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Card Matching Game</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      text-align: center;
+      background: #f0f0f0;
+    }
+
+    h1 {
+      margin-top: 20px;
+    }
+
+    .game-board {
+      width: 320px;
+      margin: 30px auto;
+      display: grid;
+      grid-template-columns: repeat(4, 70px);
+      gap: 10px;
+    }
+
+    .card {
+      width: 70px;
+      height: 70px;
+      background-color: #333;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      cursor: pointer;
+      border-radius: 8px;
+      user-select: none;
+    }
+
+    .card.flipped {
+      background-color: #fff;
+      color: #333;
+      cursor: default;
+    }
+
+    .card.matched {
+      background-color: green;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <h1>Card Match Game</h1>
+  <div class="game-board" id="gameBoard"></div>
+
+  <script>
+    const cardsArray = ['🐶', '🐱', '🐭', '🐰', '🐶', '🐱', '🐭', '🐰'];
+    let shuffledCards = shuffle(cardsArray);
+    const gameBoard = document.getElementById("gameBoard");
+
+    let firstCard = null;
+    let secondCard = null;
+    let lockBoard = false;
+
+    function shuffle(array) {
+      return array.sort(() => 0.5 - Math.random());
+    }
+
+    function createBoard() {
+      gameBoard.innerHTML = '';
+      shuffledCards.forEach((icon, index) => {
+        const card = document.createElement("div");
+        card.classList.add("card");
+        card.setAttribute("data-icon", icon);
+        card.setAttribute("data-index", index);
+        card.addEventListener("click", flipCard);
+        gameBoard.appendChild(card);
+      });
+    }
+
+    function flipCard() {
+      if (lockBoard) return;
+      if (this === firstCard) return;
+
+      this.textContent = this.getAttribute("data-icon");
+      this.classList.add("flipped");
+
+      if (!firstCard) {
+        firstCard = this;
+      } else {
+        secondCard = this;
+        lockBoard = true;
+
+        if (firstCard.getAttribute("data-icon") === secondCard.getAttribute("data-icon")) {
+          firstCard.classList.add("matched");
+          secondCard.classList.add("matched");
+          resetTurn();
+        } else {
+          setTimeout(() => {
+            firstCard.textContent = '';
+            secondCard.textContent = '';
+            firstCard.classList.remove("flipped");
+            secondCard.classList.remove("flipped");
+            resetTurn();
+          }, 1000);
+        }
+      }
+    }
+
+    function resetTurn() {
+      [firstCard, secondCard] = [null, null];
+      lockBoard = false;
+    }
+
+    createBoard();
+  </script>
+</body>
+</html>
