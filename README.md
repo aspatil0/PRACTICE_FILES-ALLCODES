@@ -88,3 +88,12 @@ This repository contains a collection of **JavaScript**, **HTML**, **CSS**, and 
 1. **Clone the repository**
    ```bash
    git clone https://github.com/your-username/your-repo-name.git
+
+
+   open Card-match.html
+
+
+
+npm install
+npm start
+
