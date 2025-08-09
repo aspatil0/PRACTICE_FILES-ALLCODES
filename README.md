@@ -83,14 +83,7 @@ This repository contains a collection of **JavaScript**, **HTML**, **CSS**, and 
 
 ---
 
-## 🚀 How to Run
 
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/your-username/your-repo-name.git
-
-
-   open Card-match.html
 
 
 
