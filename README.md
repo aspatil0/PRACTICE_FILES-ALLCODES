@@ -1,72 +1,90 @@
-🚀 30+ Mini Projects Collection – JS | React 
-Welcome to my Mini Projects Vault! 🎯
-This repository is a hands-on collection of 30+ projects built with JavaScript, React, Next.js, and MERN.
-Each project focuses on practical implementation to sharpen your development skills and provide real-world experience.
+# JavaScript & React Mini Projects
 
-📂 Project Structure
-Projects are organized into separate folders based on the tech stack:
+This repository contains a collection of **JavaScript**, **HTML**, **CSS**, and some **React-based** mini-projects for practice and learning. Each project is stored as an individual HTML file or folder and can be run directly in a browser.
 
-vbnet
-Copy
-Edit
-30-mini-projects/
-│
-├── JavaScript/
-├── React/
+---
 
-Each project folder includes:
+## 📂 Project List
 
-✅ Source Code
+1. **GEMINI CLONE**  
+   A UI clone of Google's Gemini interface using HTML, CSS, and JavaScript.
 
-📄 README.md with a project overview
+2. **TIC-TAC-TOE GAME**  
+   A simple Tic-Tac-Toe game with basic win/lose/draw logic.
 
-📸 Screenshots or previews (if available)
+3. **TODO LIST SITE**  
+   A task management app with add, complete, and delete functionality.
 
-⚡ Tech Stack
-Tech Stack	Purpose
-JavaScript (Vanilla)	DOM manipulation & logic building
-React.js	Component-based UI development
-Next.js	Full-stack React with SSR & SSG
-MERN Stack	Full-stack applications with MongoDB, Express, React, Node.js
+4. **Card-match.html**  
+   A card-matching memory game.
 
-💡 Featured Projects
-🟨 JavaScript
-✅ Calculator
+5. **ColourPalite.html**  
+   A tool to select and generate color palettes.
 
-✅ To-Do List
+6. **Discountcal.html**  
+   A discount calculator for price reduction calculations.
 
-✅ Typing Speed Test
+7. **FULLMETHODSARRAY.html**  
+   Demonstrates JavaScript array methods with examples.
 
-⚛️ React.js
-✅ Weather App (API Integrated)
+8. **Quiz.html**  
+   A simple quiz application.
 
-✅ Quiz App
+9. **Reg-stude.html**  
+   A basic student registration form with validation.
 
-✅ Notes Keeper
+10. **anime-game.html**  
+    An anime-themed JavaScript game.
 
-🌐 Next.js
-✅ Blog Platform
+11. **avengers.html**  
+    A Marvel Avengers-themed webpage/game.
 
-✅ Portfolio Website
+12. **colorpal.html**  
+    Another variation of color palette generation.
 
-✅ Dark Mode Toggle
+13. **createOTP.html**  
+    Generates a random OTP (One-Time Password).
 
-🌍 MERN Stack
-✅ Authentication System
+14. **deathcal.html**  
+    A fun "Death Calculator" app.
 
-✅ Task Manager
+15. **drummusic.html**  
+    A drum kit app to play sounds by clicking or pressing keys.
 
-✅ Mini Social Media Clone
+16. **leap.html**  
+    Checks if a given year is a leap year.
 
-🚀 Getting Started
-Clone the repository:
+17. **loopisnotandbacktricks.html**  
+    Demonstrates loop and backtracking concepts in JS.
 
-bash
-Copy
-Edit
-git clone https://github.com/yourusername/30-mini-projects.git
-cd 30-mini-projects
-Open any project folder, install dependencies if required, and run the project.
+18. **moodjs.html**  
+    Changes UI and content based on selected mood.
 
-⭐ Support
-If you like this collection, consider starring ⭐ the repository and sharing it with fellow developers!
+19. **news.html**  
+    A news page layout (static/dynamic).
+
+20. **personal-to-do.html**  
+    A neon-themed personal to-do list app.
+
+21. **reCAPTCHA.html**  
+    A simple Google reCAPTCHA implementation.
+
+22. **resumetexttopdf.html**  
+    Converts resume text to a downloadable PDF.
+
+23. **to-do-list.html**  
+    Another version of the to-do list app.
+
+24. **tp.html**  
+    A test/demo page.
+
+25. **weather.html**  
+    Displays live weather data (possibly via API).
+
+---
+
+## 🚀 How to Run
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/your-username/your-repo-name.git
