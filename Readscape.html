@@ -1,0 +1,72 @@
+<html>
+<head>
+  <title>My Book Library</title>
+  <style>
+    body {
+      font-family: "Segoe UI", sans-serif;
+      background: linear-gradient(135deg, #ffb347, #ffcc33);
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+    .container {
+      background: white;
+      width: 80%;
+      max-width: 900px;
+      border-radius: 15px;
+      padding: 20px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+      position: relative;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    input {
+      margin-bottom: 20px;
+    }
+    iframe {
+      width: 100%;
+      height: 600px;
+      border: none;
+      pointer-events: none; /* Disable interactions like right-click in iframe */
+    }
+  </style>
+</head>
+<body oncontextmenu="return false" onselectstart="return false" ondragstart="return false">
+
+  <div class="container">
+    <h1>📚 My Books</h1>
+    <input type="file" id="bookUpload" accept="application/pdf">
+    <iframe id="bookViewer"></iframe>
+  </div>
+
+  <script>
+    const bookUpload = document.getElementById('bookUpload');
+    const bookViewer = document.getElementById('bookViewer');
+
+
+    document.addEventListener('keydown', function(e) {
+      if ((e.ctrlKey && (e.key === 'c' || e.key === 'p' || e.key === 's')) || e.key === 'PrintScreen') {
+        e.preventDefault();
+        alert("Copying/Printing is disabled!");
+      }
+    });
+
+
+    bookUpload.addEventListener('change', function() {
+      const file = this.files[0];
+      if (file && file.type === "application/pdf") {
+        const fileURL = URL.createObjectURL(file);
+        bookViewer.src = fileURL;
+      } else {
+        alert("Please upload a PDF file.");
+      }
+    });
+  </script>
+
+</body>
+</html>
