@@ -4,7 +4,7 @@
   <style>
     body {
       font-family: "Segoe UI", sans-serif;
-      background: linear-gradient(135deg, #ffb347, #ffcc33);
+      background: linear-gradient(135deg, #ff9a9e, #fad0c4);
       margin: 0;
       padding: 0;
       display: flex;
@@ -16,23 +16,49 @@
       background: white;
       width: 80%;
       max-width: 900px;
-      border-radius: 15px;
+      border-radius: 20px;
       padding: 20px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+      box-shadow: 0 10px 25px rgba(255,0,90,0.2);
       position: relative;
+      border: 3px solid #ffb6c1;
     }
     h1 {
       text-align: center;
       margin-bottom: 20px;
+      color: #ff4f7b;
+      font-size: 28px;
+    }
+    h1::after {
+      content: " ❤️";
     }
     input {
       margin-bottom: 20px;
+      padding: 10px;
+      border: 2px solid #ff8da1;
+      border-radius: 10px;
+      outline: none;
+      font-size: 14px;
+      color: #555;
+      width: calc(100% - 24px);
+    }
+    input[type="file"]::-webkit-file-upload-button {
+      background: #ff4f7b;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      padding: 8px 12px;
+      cursor: pointer;
+    }
+    input[type="file"]::-webkit-file-upload-button:hover {
+      background: #e13b66;
     }
     iframe {
       width: 100%;
       height: 600px;
-      border: none;
-      pointer-events: none; /* Disable interactions like right-click in iframe */
+      border: 2px solid #ff8da1;
+      border-radius: 15px;
+      background: #fff0f5;
+      pointer-events: none;
     }
   </style>
 </head>
