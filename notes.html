@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Notes App (Local Storage)</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+    #notes {
+      margin-top: 20px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      background: #f9f9f9;
+      min-height: 100px;
+    }
+    .note {
+      padding: 5px;
+      border-bottom: 1px solid #ddd;
+    }
+    .note:last-child {
+      border-bottom: none;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>My Notes</h1>
+
+  <input type="text" id="noteInput" placeholder="Write your note..." />
+  <button onclick="addNote()">Add Note</button>
+
+  <div id="notes"></div>
+
+  <script>
+    let notes = JSON.parse(localStorage.getItem("notes")) || [];
+
+    function displayNotes() {
+      const notesDiv = document.getElementById("notes");
+      notesDiv.innerHTML = "";
+      notes.forEach((note, index) => {
+        notesDiv.innerHTML += `<div class="note">${note}</div>`;
+      });
+    }
+
+    function addNote() {
+      const noteInput = document.getElementById("noteInput");
+      const noteText = noteInput.value.trim();
+      if (noteText) {
+        notes.push(noteText);
+        localStorage.setItem("notes", JSON.stringify(notes));
+        noteInput.value = "";
+        displayNotes();
+      }
+    }
+
+    displayNotes();
+  </script>
+
+</body>
+</html>
