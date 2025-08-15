@@ -230,15 +230,22 @@
     {t:'🏏 Cricket', d:'Cricket is a national passion; India has won multiple ICC titles.'},
   ];
   const factsWrap = document.getElementById('facts');
-  factsData.forEach((f,i)=>{
-    const div = document.createElement('div');
-    div.className='fact';
-    div.tabIndex=0;
-    div.innerHTML = `<strong>${f.t}</strong><p class="sub" style="margin:6px 0 0">Tap to reveal…</p>`;
-    div.addEventListener('click', ()=> reveal(div,f.d));
-    div.addEventListener('keypress', (e)=>{if(e.key==='Enter') reveal(div,f.d)});
-    factsWrap.appendChild(div);
+factsData.forEach((f) => {
+  const div = document.createElement('div');
+  div.className = 'fact';
+  div.tabIndex = 0;
+  div.innerHTML = `<strong>${f.t}</strong><p class="sub" style="margin:6px 0 0">Tap to reveal…</p>`;
+  div.addEventListener('click', () => {
+    div.innerHTML = `<strong>${f.t}</strong><p style="margin:6px 0 0">${f.d}</p>`;
   });
+  div.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') {
+      div.innerHTML = `<strong>${f.t}</strong><p style="margin:6px 0 0">${f.d}</p>`;
+    }
+  });
+  factsWrap.appendChild(div);
+});
+
   function reveal(div,text){
     div.innerHTML = `<strong>${div.textContent.split('\n')[0]}</strong><p style="margin:6px 0 0">${text}</p>`;
   }
