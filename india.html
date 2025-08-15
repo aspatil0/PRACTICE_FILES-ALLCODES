@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Incredible India – Interactive Page</title>
+  <meta name="description" content="A playful, interactive single‑file webpage celebrating India with animations, facts, and a mini quiz."/>
+  <style>
+    :root{
+      --bg:#0b0f17; /* dark base */
+      --card:#111827cc; /* glass */
+      --text:#e5e7eb; /* light */
+      --muted:#9ca3af;
+      --accent:#22d3ee;
+      --ring: 0 0 0 2px rgba(255,255,255,.2);
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+      --orange:#ff9933; /* saffron */
+      --white:#ffffff; /* white */
+      --green:#138808; /* green */
+      --blue:#00008B; /* Chakra */
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, Noto Sans, "Apple Color Emoji","Segoe UI Emoji";
+      background: radial-gradient(1200px 800px at 80% -10%, rgba(255,153,51,.12), transparent 60%),
+                  radial-gradient(1200px 800px at 20% 110%, rgba(19,136,8,.12), transparent 60%),
+                  var(--bg);
+      color:var(--text);
+      overflow-x:hidden;
+    }
+
+    .ribbon{
+      position:fixed; inset:0 0 auto 0; height:8px; z-index:50;
+      background: linear-gradient(90deg,var(--orange),var(--white),var(--green));
+      box-shadow:var(--shadow);
+      animation: shimmer 6s linear infinite;
+      background-size:200% 100%;
+    }
+    @keyframes shimmer{0%{background-position:0 0}100%{background-position:200% 0}}
+
+    header{
+      position:relative; padding:96px 24px 40px; text-align:center; 
+    }
+    .chakra{
+      width:120px; height:120px; margin:0 auto 12px; filter: drop-shadow(0 8px 24px rgba(0,0,0,.35));
+      animation: spin 12s linear infinite; 
+    }
+    @keyframes spin{to{transform:rotate(360deg)}}
+
+    h1{font-size: clamp(28px, 6vw, 54px); margin:0; letter-spacing:.3px}
+    .sub{color:var(--muted); margin-top:8px; font-size: clamp(14px, 2.6vw, 18px)}
+
+    .actions{margin:22px 0 0; display:flex; gap:12px; justify-content:center; flex-wrap:wrap}
+    .btn{
+      padding:12px 16px; border-radius:16px; border:1px solid #ffffff22; background:#0f172a99; color:#fff; cursor:pointer; 
+      backdrop-filter: blur(10px); box-shadow:var(--shadow); font-weight:600; transition:.2s transform, .2s box-shadow; 
+    }
+    .btn:hover{transform:translateY(-2px); box-shadow:0 16px 38px rgba(0,0,0,.4)}
+
+    main{padding: 24px; max-width:1100px; margin:0 auto 80px; display:grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap:18px}
+
+    .card{background:var(--card); border:1px solid #ffffff1a; border-radius:24px; padding:18px 18px 16px; backdrop-filter: blur(12px); box-shadow:var(--shadow)}
+    .card h2{margin:4px 0 10px; font-size:22px}
+    .card p{margin:6px 0; color:var(--muted)}
+
+    .typewrap{min-height:40px; font-weight:700; font-size:20px}
+    .cursor{display:inline-block; width:1ch; animation: blink 1s steps(2, start) infinite}
+    @keyframes blink{50%{opacity:0}}
+
+    .facts{display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:10px}
+    .fact{padding:12px; border-radius:16px; border:1px dashed #ffffff24; background: #0b1224aa; cursor:pointer; transition:.2s transform}
+    .fact:hover{transform: translateY(-2px)}
+
+    .quiz-q{margin:10px 0 12px}
+    .choices{display:grid; gap:8px}
+    .choice{
+      border:1px solid #ffffff24; border-radius:12px; padding:10px; cursor:pointer; background:#0d1325aa;
+    }
+    .choice.correct{outline: var(--ring); border-color:#22c55e99}
+    .choice.wrong{outline: var(--ring); border-color:#ef444499}
+
+    footer{max-width:1100px; margin: 0 auto 64px; padding: 0 24px; color:var(--muted); text-align:center}
+
+    #fireworks{position:fixed; inset:0; pointer-events:none; z-index:40}
+
+    @media (max-width:520px){
+      .facts{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body>
+  <div class="ribbon" aria-hidden="true"></div>
+  <canvas id="fireworks"></canvas>
+
+  <header>
+
+    <svg class="chakra" viewBox="0 0 100 100" aria-hidden="true">
+      <circle cx="50" cy="50" r="48" fill="none" stroke="var(--blue)" stroke-width="3"/>
+      <circle cx="50" cy="50" r="3.2" fill="var(--blue)"/>
+      <g stroke="var(--blue)" stroke-width="2">
+        <!-- 24 spokes -->
+        <g transform="translate(50,50)">
+          <g id="spokes">
+            <line x1="0" y1="6" x2="0" y2="45"/>
+          </g>
+          <use href="#spokes" transform="rotate(15)"/>
+          <use href="#spokes" transform="rotate(30)"/>
+          <use href="#spokes" transform="rotate(45)"/>
+          <use href="#spokes" transform="rotate(60)"/>
+          <use href="#spokes" transform="rotate(75)"/>
+          <use href="#spokes" transform="rotate(90)"/>
+          <use href="#spokes" transform="rotate(105)"/>
+          <use href="#spokes" transform="rotate(120)"/>
+          <use href="#spokes" transform="rotate(135)"/>
+          <use href="#spokes" transform="rotate(150)"/>
+          <use href="#spokes" transform="rotate(165)"/>
+          <use href="#spokes" transform="rotate(180)"/>
+          <use href="#spokes" transform="rotate(195)"/>
+          <use href="#spokes" transform="rotate(210)"/>
+          <use href="#spokes" transform="rotate(225)"/>
+          <use href="#spokes" transform="rotate(240)"/>
+          <use href="#spokes" transform="rotate(255)"/>
+          <use href="#spokes" transform="rotate(270)"/>
+          <use href="#spokes" transform="rotate(285)"/>
+          <use href="#spokes" transform="rotate(300)"/>
+          <use href="#spokes" transform="rotate(315)"/>
+          <use href="#spokes" transform="rotate(330)"/>
+          <use href="#spokes" transform="rotate(345)"/>
+        </g>
+      </g>
+    </svg>
+
+    <h1>Namaste, India 🇮🇳</h1>
+    <p class="sub" id="greeting">Celebrating culture, diversity, and innovation.</p>
+    <div class="actions">
+      <button class="btn" id="celebrateBtn">🎉 Celebrate</button>
+      <button class="btn" id="toggleMode">🌓 Toggle Dark/Light</button>
+      <button class="btn" id="shareBtn">🔗 Share</button>
+    </div>
+  </header>
+
+  <main>
+
+    <section class="card" aria-live="polite">
+      <h2>How do we say "Hello"?</h2>
+      <div class="typewrap"><span id="type"></span><span class="cursor">|</span></div>
+      <p class="sub">A tiny tour across Indian languages ✨</p>
+    </section>
+
+
+    <section class="card">
+      <h2>Fun India Facts</h2>
+      <div class="facts" id="facts"></div>
+      <p class="sub">Tap a card to reveal a bite‑sized fact.</p>
+    </section>
+
+
+    <section class="card">
+      <h2>Quick Quiz 🇮🇳</h2>
+      <div id="quiz"></div>
+      <div style="display:flex; gap:10px; margin-top:10px">
+        <button class="btn" id="submitQuiz">Submit</button>
+        <button class="btn" id="resetQuiz">Reset</button>
+      </div>
+      <p id="quizResult" class="sub"></p>
+    </section>
+
+
+    <section class="card">
+      <h2>Monuments & Food</h2>
+      <div class="facts" id="gallery"></div>
+      <p class="sub">Click a tile for a tasty tidbit 😋</p>
+    </section>
+  </main>
+
+  <footer>
+    Built with ❤️ for India. Single‑file; no libraries.
+  </footer>
+
+<script>
+
+(function greet(){
+    const el = document.getElementById('greeting');
+    const d = new Date();
+    const m = d.getMonth()+1, day = d.getDate();
+    if ((m===1 && day===26) || (m===8 && day===15)){
+      el.textContent = `Jai Hind! Happy ${m===1? 'Republic Day' : 'Independence Day'}!`;
+      startFireworks();
+      setTimeout(stopFireworks, 6000);
+    }
+  })();
+
+
+  const greetings = [
+    'Namaste (Hindi/Marathi/Nepali)',
+    'Vanakkam (Tamil)',
+    'Namaskāra (Kannada)',
+    'Namaskaram (Telugu/Malayalam)',
+    'Nomoshkar (Bengali)',
+    'Sat Sri Akal (Punjabi)',
+    'Kem Cho (Gujarati)',
+    'Juhar (Odia/Chhattisgarhi)',
+    'Adaab (Urdu)',
+    'Kuzo Zangpo (Dzongkha influence in NE)',
+  ];
+  let twI=0, chI=0, deleting=false;
+  const typeEl = document.getElementById('type');
+  function typeLoop(){
+    const word = greetings[twI % greetings.length];
+    typeEl.textContent = word.slice(0, chI);
+    if(!deleting){
+      if(chI < word.length) chI++;
+      else{ deleting=true; setTimeout(typeLoop, 1200); return; }
+    } else {
+      if(chI>0) chI--; else {deleting=false; twI++;}
+    }
+    setTimeout(typeLoop, deleting? 30 : 55);
+  }
+  typeLoop();
+
+
+  const factsData = [
+    {t:'🌶️ Spices', d:'India is one of the world\'s largest producers of spices, exporting to 100+ countries.'},
+    {t:'🕉️ Zero', d:'The concept of zero (śūnya) as a number was formally developed in India.'},
+    {t:'🎬 Cinema', d:'India has one of the world\'s largest film industries with movies in many languages.'},
+    {t:'🚀 Space', d:'ISRO\'s Mars Orbiter Mission made India the first nation to reach Mars on its maiden attempt (2014).'},
+    {t:'📚 Languages', d:'The Indian constitution recognizes 22 scheduled languages.'},
+    {t:'🏏 Cricket', d:'Cricket is a national passion; India has won multiple ICC titles.'},
+  ];
+  const factsWrap = document.getElementById('facts');
+  factsData.forEach((f,i)=>{
+    const div = document.createElement('div');
+    div.className='fact';
+    div.tabIndex=0;
+    div.innerHTML = `<strong>${f.t}</strong><p class="sub" style="margin:6px 0 0">Tap to reveal…</p>`;
+    div.addEventListener('click', ()=> reveal(div,f.d));
+    div.addEventListener('keypress', (e)=>{if(e.key==='Enter') reveal(div,f.d)});
+    factsWrap.appendChild(div);
+  });
+  function reveal(div,text){
+    div.innerHTML = `<strong>${div.textContent.split('\n')[0]}</strong><p style="margin:6px 0 0">${text}</p>`;
+  }
+
+
+  const quizQ = [
+    {q:'What do the colors of the Indian flag represent?', c:['Courage & sacrifice, peace & truth, faith & chivalry','Spices, snow, forests','Land, sea, sky'], a:0},
+    {q:'How many spokes are in the Ashoka Chakra?', c:['12','18','24','36'], a:2},
+    {q:'Which city is known as the Silicon Valley of India?', c:['Hyderabad','Bengaluru','Pune','Gurugram'], a:1},
+    {q:'Republic Day of India is celebrated on…', c:['January 26','August 15','October 2'], a:0},
+    {q:'Which mountain range houses the Kanchenjunga?', c:['Aravalli','Vindhya','Himalaya'], a:2},
+  ];
+  const quizEl = document.getElementById('quiz');
+  const quizResult = document.getElementById('quizResult');
+  const state = {answers: new Array(quizQ.length).fill(null)};
+  quizQ.forEach((item,idx)=>{
+    const box = document.createElement('div');
+    box.className='quiz-item';
+    box.innerHTML = `<div class="quiz-q"><strong>Q${idx+1}.</strong> ${item.q}</div>`;
+    const choices = document.createElement('div');
+    choices.className='choices';
+    item.c.forEach((opt,i)=>{
+      const btn = document.createElement('button');
+      btn.className='choice'; btn.type='button'; btn.textContent=opt;
+      btn.addEventListener('click', ()=>{
+        state.answers[idx] = i;
+
+        [...choices.children].forEach(ch=> ch.style.outline='none');
+        btn.style.outline='var(--ring)';
+      });
+      choices.appendChild(btn);
+    });
+    box.appendChild(choices);
+    quizEl.appendChild(box);
+  });
+  document.getElementById('submitQuiz').addEventListener('click', ()=>{
+    let score=0;
+
+    document.querySelectorAll('.choice').forEach(ch=>ch.classList.remove('correct','wrong'));
+    quizQ.forEach((item,idx)=>{
+      const chosen = state.answers[idx];
+      const wrap = quizEl.children[idx].querySelector('.choices');
+      if(chosen===item.a){ score++; wrap.children[chosen].classList.add('correct'); }
+      else if(chosen!=null){ wrap.children[chosen].classList.add('wrong'); wrap.children[item.a].classList.add('correct'); }
+    });
+    quizResult.textContent = `You scored ${score} / ${quizQ.length}!`;
+    if(score===quizQ.length){ startFireworks(); setTimeout(stopFireworks, 3000); }
+  });
+  document.getElementById('resetQuiz').addEventListener('click', ()=>{
+    state.answers.fill(null); quizResult.textContent='';
+    document.querySelectorAll('.choice').forEach(ch=>{ch.classList.remove('correct','wrong'); ch.style.outline='none'});
+  });
+
+  const galleryData = [
+    {emoji:'🏛️', title:'Taj Mahal', tip:'A UNESCO World Heritage Site symbolizing eternal love (Agra).'},
+    {emoji:'🪔', title:'Varanasi Ghats', tip:'One of the oldest living cities with sacred riverfront steps.'},
+    {emoji:'🧱', title:'Hampi', tip:'Ruins of the Vijayanagara Empire, famed for boulders and temples.'},
+    {emoji:'🕌', title:'Charminar', tip:'Iconic 16th‑century monument and mosque in Hyderabad.'},
+    {emoji:'🪙', title:'Konark Sun Temple', tip:'13th‑century temple shaped like a chariot with stone wheels.'},
+    {emoji:'🍛', title:'Masala Dosa', tip:'Crispy crepe with spicy potato — South Indian classic!'},
+    {emoji:'🥘', title:'Biryani', tip:'Fragrant rice dish with layers of spices and flavour.'},
+    {emoji:'🫓', title:'Roti & Sabzi', tip:'Everyday comfort: whole‑wheat flatbread with veggies.'},
+  ];
+  const gal = document.getElementById('gallery');
+  galleryData.forEach(g=>{
+    const d=document.createElement('div');
+    d.className='fact';
+    d.innerHTML = `<div style="font-size:28px">${g.emoji}</div><div><strong>${g.title}</strong><p class="sub" style="margin:6px 0 0">Click for more</p></div>`;
+    d.addEventListener('click',()=>{
+      toast(`${g.title}: ${g.tip}`);
+    });
+    gal.appendChild(d);
+  });
+
+
+  function toast(text){
+    const t=document.createElement('div');
+    t.textContent=text;
+    t.style.cssText=`position:fixed; left:50%; bottom:28px; transform:translateX(-50%); background:#0b1224ee; color:#fff; padding:12px 16px; border-radius:14px; border:1px solid #ffffff33; box-shadow:${getComputedStyle(document.documentElement).getPropertyValue('--shadow')}; z-index:60;`;
+    document.body.appendChild(t);
+    setTimeout(()=>{t.style.opacity='0'; t.style.transition='opacity .4s'; setTimeout(()=>t.remove(), 420);}, 2000);
+  }
+
+
+  document.getElementById('shareBtn').addEventListener('click', async()=>{
+    const url = location.href;
+    const text = 'Check out this interactive India page! 🇮🇳';
+    if(navigator.share){ try{ await navigator.share({title:document.title, text, url}); }catch(e){} }
+    else{
+      await navigator.clipboard.writeText(url);
+      toast('Link copied to clipboard!');
+    }
+  });
+
+  const toggleBtn = document.getElementById('toggleMode');
+  toggleBtn.addEventListener('click', ()=>{
+    const light = document.body.dataset.theme !== 'light';
+    if(light){
+      document.body.dataset.theme = 'light';
+      document.documentElement.style.setProperty('--bg','#f3f4f6');
+      document.documentElement.style.setProperty('--card','#ffffffdd');
+      document.documentElement.style.setProperty('--text','#0b1224');
+      document.documentElement.style.setProperty('--muted','#4b5563');
+    }else{
+      document.body.dataset.theme = 'dark';
+      document.documentElement.style.setProperty('--bg','#0b0f17');
+      document.documentElement.style.setProperty('--card','#111827cc');
+      document.documentElement.style.setProperty('--text','#e5e7eb');
+      document.documentElement.style.setProperty('--muted','#9ca3af');
+    }
+  });
+
+
+  const canvas = document.getElementById('fireworks');
+  const ctx = canvas.getContext('2d');
+  let fwRAF=null, particles=[]; let running=false;
+  function resize(){ canvas.width = innerWidth; canvas.height = innerHeight; }
+  addEventListener('resize', resize); resize();
+
+  function rand(min,max){ return Math.random()*(max-min)+min }
+  function Particle(x,y){
+    const angle = rand(0, Math.PI*2);
+    const speed = rand(1, 6);
+    this.x=x; this.y=y; this.vx=Math.cos(angle)*speed; this.vy=Math.sin(angle)*speed; this.alpha=1; this.life=rand(40, 90);
+  }
+  function burst(x,y){
+    for(let i=0;i<120;i++){ particles.push(new Particle(x,y)); }
+  }
+  function animate(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    for(let i=particles.length-1;i>=0;i--){
+      const p=particles[i];
+      p.x+=p.vx; p.y+=p.vy; p.vy+=0.04; p.life--; p.alpha = Math.max(0, p.life/90);
+      ctx.globalAlpha = p.alpha;
+
+
+      const g = ctx.createRadialGradient(p.x,p.y,0,p.x,p.y,6);
+      g.addColorStop(0,'white'); g.addColorStop(.5,'orange'); g.addColorStop(1,'green');
+      ctx.fillStyle = g;
+      ctx.beginPath(); ctx.arc(p.x,p.y,3,0,Math.PI*2); ctx.fill();
+      if(p.life<=0) particles.splice(i,1);
+    }
+    ctx.globalAlpha=1;
+    if(running) fwRAF = requestAnimationFrame(animate);
+  }
+
+  function startFireworks(){ if(running) return; running=true; animate(); spawnLoop(); }
+  function stopFireworks(){ running=false; cancelAnimationFrame(fwRAF); }
+  function spawnLoop(){
+    if(!running) return;
+    burst(rand(innerWidth*.2, innerWidth*.8), rand(innerHeight*.2, innerHeight*.6));
+    setTimeout(spawnLoop, 600);
+  }
+
+  document.getElementById('celebrateBtn').addEventListener('click', ()=>{
+    if(!running){ startFireworks(); toast('Bharat Mata Ki Jai! 🎆'); setTimeout(stopFireworks, 4000); }
+  });
+</script>
+</body>
+</html>
