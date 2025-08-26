@@ -12,5 +12,3 @@ function Primes(num) {
   return 'true';
 }
 
-// keep this function call here
-console.log(Primes(readline()));
