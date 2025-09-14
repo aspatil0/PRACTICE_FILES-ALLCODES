@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pending Websites List</title>
+  <style>
+    body {
+      background-color: #0d0d0d;
+      color: #fff;
+      font-family: 'Poppins', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+    }
+    .container {
+      width: 90%;
+      max-width: 1000px;
+      background: rgba(20, 20, 20, 0.8);
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 0 20px #00fff7, 0 0 40px #00fff7;
+      animation: glow 3s infinite alternate;
+    }
+    h1 {
+      text-align: center;
+      color: #00fff7;
+      text-shadow: 0 0 10px #00fff7, 0 0 20px #ff00ff;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+    th, td {
+      padding: 12px 15px;
+      text-align: center;
+      border-bottom: 1px solid #333;
+    }
+    th {
+      color: #00fff7;
+      text-shadow: 0 0 5px #00fff7;
+      font-size: 18px;
+    }
+    tr:hover {
+      background: rgba(0, 255, 247, 0.1);
+      transition: 0.3s;
+    }
+    td.status.complete {
+      color: #00ff88;
+      text-shadow: 0 0 10px #00ff88;
+    }
+    td.status.pending {
+      color: #ff0040;
+      text-shadow: 0 0 10px #ff0040;
+    }
+    button {
+      background: transparent;
+      border: 2px solid #00fff7;
+      color: #00fff7;
+      padding: 5px 10px;
+      border-radius: 8px;
+      cursor: pointer;
+      text-shadow: 0 0 5px #00fff7;
+      transition: 0.3s;
+    }
+    button:hover {
+      background: #00fff7;
+      color: #0d0d0d;
+      box-shadow: 0 0 15px #00fff7, 0 0 25px #ff00ff;
+    }
+    @keyframes glow {
+      from { box-shadow: 0 0 15px #00fff7, 0 0 25px #ff00ff; }
+      to { box-shadow: 0 0 25px #ff00ff, 0 0 45px #00fff7; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🚀 Pending Websites List</h1>
+    <table>
+      <thead>
+        <tr>
+          <th>Website Title</th>
+          <th>Start Time</th>
+          <th>Status</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>DevineTech Portfolio</td>
+          <td>15 Sept 2025</td>
+          <td class="status pending">Not Completed</td>
+          <td><button onclick="markComplete(this)">✔</button></td>
+        </tr>
+        <tr>
+          <td>CoupleMate</td>
+          <td>20 Sept 2025</td>
+          <td class="status complete">Completed</td>
+          <td><button disabled>✔</button></td>
+        </tr>
+        <tr>
+          <td>Feed India</td>
+          <td>25 Sept 2025</td>
+          <td class="status pending">Not Completed</td>
+          <td><button onclick="markComplete(this)">✔</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <script>
+    function markComplete(button) {
+      const row = button.closest("tr");
+      const statusCell = row.querySelector(".status");
+      statusCell.textContent = "Completed";
+      statusCell.classList.remove("pending");
+      statusCell.classList.add("complete");
+      button.disabled = true;
+    }
+  </script>
+</body>
+</html>
