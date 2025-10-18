@@ -14,3 +14,13 @@ if (found) {
 } else {
   console.log("Element not found");
 }
+
+
+const arr = [5, 2, 9, 1, 7];
+const target = 9;
+
+if (arr.includes(target)) {
+  console.log("Element found");
+} else {
+  console.log("Element not found");
+}
