@@ -14,7 +14,7 @@ if (found) {
 } else {
   console.log("Element not found");
 }
-
+//--------------------usimh builtin function  includes-----------------
 
 const arr = [5, 2, 9, 1, 7];
 const target = 9;
