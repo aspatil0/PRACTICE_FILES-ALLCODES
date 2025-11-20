@@ -16,57 +16,22 @@ input,button{padding:8px 12px;font-size:16px}
 <button id="clear">Clear Alarm</button>
 <div id="status">No alarm set</div>
 <script>
-let alarmTime=null, timer=null, ctx=null, osc=null
-const t=document.getElementById("time")
-const s=document.getElementById("status")
-document.getElementById("set").addEventListener("click",()=>{
-  if(!t.value) return
-  alarmTime=t.value
-  s.textContent="Alarm set for "+alarmTime
-  if(timer) clearInterval(timer)
-  timer=setInterval(check,500)
-})
-document.getElementById("clear").addEventListener("click",()=>{
-  alarmTime=null
-  s.textContent="No alarm set"
-  if(timer){clearInterval(timer);timer=null}
-  stopSound()
-})
-function nowTime(){
-  const d=new Date()
-  const hh=String(d.getHours()).padStart(2,"0")
-  const mm=String(d.getMinutes()).padStart(2,"0")
-  return `${hh}:${mm}`
+<input id="time" type="time">
+<button onclick="setAlarm()">Set</button>
+
+<script>
+let alarm;
+function setAlarm(){
+  alarm=document.getElementById("time").value;
+  setInterval(()=>{
+    let d=new Date();
+    let t=d.getHours().toString().padStart(2,"0")+":"+
+           d.getMinutes().toString().padStart(2,"0");
+    if(t===alarm) alert("Alarm");
+  },1000);
 }
-function check(){
-  if(!alarmTime) return
-  if(nowTime()===alarmTime){
-    trigger()
-    clearInterval(timer)
-    timer=null
-    alarmTime=null
-    s.textContent="Alarm triggered"
-  }
-}
-function trigger(){
-  if(window.Notification && Notification.permission!=="granted") Notification.requestPermission()
-  if(window.Notification && Notification.permission==="granted") new Notification("Alarm","Your alarm is ringing")
-  playBeep()
-  alert("Alarm")
-}
-function playBeep(){
-  if(!ctx) ctx=new (window.AudioContext||window.webkitAudioContext)()
-  osc=ctx.createOscillator()
-  const gain=ctx.createGain()
-  osc.type="sine"
-  osc.frequency.value=880
-  gain.gain.value=0.2
-  osc.connect(gain)
-  gain.connect(ctx.destination)
-  osc.start()
-  setTimeout(()=>{stopSound()},5000)
-}
-function stopSound(){ if(osc){try{osc.stop()}catch(e){} osc.disconnect();osc=null} }
+</script>
+
 </script>
 </body>
 </html>
