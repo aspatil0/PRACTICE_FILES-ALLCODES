@@ -3,7 +3,6 @@ import shutil
 
 # ====== CHANGE THIS PATH ======
 SOURCE_FOLDER = r"C:\Users\YourName\Downloads"
-# ==============================
 
 FILE_TYPES = {
     "Images": [".jpg", ".jpeg", ".png", ".gif", ".bmp", ".webp"],
